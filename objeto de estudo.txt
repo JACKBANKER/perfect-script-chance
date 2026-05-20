@@ -96,7 +96,6 @@ hideButton.TextColor3 = Color3.new(1, 1, 1)
 hideButton.TextScaled = true
 hideButton.Text = "HIDE" -- simple menu icon
 hideButton.Active = true
-hideButton.Draggable = true -- makes it draggable
 hideButton.Parent = screenGui
 
 -- Track hidden state
@@ -224,7 +223,6 @@ chargesModeButton.Size = UDim2.new(0, 140, 0, 30)
 chargesModeButton.LayoutOrder = 11
 chargesModeButton.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 chargesModeButton.TextColor3 = Color3.new(1, 1, 1)
-d = false
 chargesModeButton.Text = "Charges: 3" -- default
 chargesModeButton.Parent = mainFrame
 
@@ -357,6 +355,7 @@ local function sendChatMessage(text)
     local TextChatService = game:GetService("TextChatService")
     local channel = TextChatService.TextChannels.RBXGeneral
 
+    if channel then
     channel:SendAsync(text)
 end
 
