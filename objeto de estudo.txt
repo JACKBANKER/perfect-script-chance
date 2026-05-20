@@ -22,9 +22,8 @@ local mainFrame = Instance.new("Frame")
 mainFrame.Size = UDim2.new(0, 180, 0, 110)
 mainFrame.Position = UDim2.new(0, 20, 0, 100)
 mainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
-mainFrame.Active = true
+mainFrame.Active = false
 mainFrame.Parent = screenGui
-
 -- Make mainFrame auto-resize
 mainFrame.AutomaticSize = Enum.AutomaticSize.Y
 mainFrame.Size = UDim2.new(0, 180, 0, 0) -- only width fixed, height auto
@@ -37,9 +36,24 @@ layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 layout.SortOrder = Enum.SortOrder.LayoutOrder
 layout.Parent = mainFrame
 
+-- Drag Bar
+local dragBar = Instance.new("Frame")
+dragBar.Size = UDim2.new(1, 0, 0, 25)
+dragBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+dragBar.BorderSizePixel = 0
+dragBar.Parent = mainFrame
+
+local dragLabel = Instance.new("TextLabel")
+dragLabel.Size = UDim2.new(1,0,1,0)
+dragLabel.BackgroundTransparency = 1
+dragLabel.Text = "Chance Aimbot"
+dragLabel.TextColor3 = Color3.new(1,1,1)
+dragLabel.TextScaled = true
+dragLabel.Parent = dragBar
+
 -- Dragging logic
 local dragging, dragInput, dragStart, startPos
-mainFrame.InputBegan:Connect(function(input)
+dragBar.InputBegan:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
         dragging = true
         dragStart = input.Position
@@ -53,7 +67,7 @@ mainFrame.InputBegan:Connect(function(input)
     end
 end)
 
-mainFrame.InputChanged:Connect(function(input)
+dragBar.InputChanged:Connect(function(input)
     if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
         dragInput = input
     end
